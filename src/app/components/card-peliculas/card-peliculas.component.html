@@ -1,0 +1,22 @@
+<mat-spinner class="charge" *ngIf="loading"></mat-spinner>
+
+<div class="content" *ngIf="loaded">
+    <h1>Mis Películas</h1>
+    
+    <div class="col-md-12">
+        <button mat-flat color="primary" routerLink="/"><mat-icon fontIcon="table_chart"></mat-icon>Table view</button>
+        <button mat-flat color="warn" routerLink="/peliculaCard"><mat-icon fontIcon="grid_view"></mat-icon>Card View</button>
+    </div>
+
+    <mat-card *ngFor="let pelicula of peliculas" class="mat-elevation-z4">
+        <img mat-card-image [src]="getPosterUrl(pelicula.poster_path)" alt="Poster">
+        <mat-card-title>{{ pelicula.title }}</mat-card-title> 
+        <mat-card-content>           
+            <p><strong>Language:</strong> {{pelicula.original_language}}</p>
+            <p><strong>Release date:</strong> {{pelicula.release_date}}</p>
+            <p><strong>Popularity:</strong> {{pelicula.popularity}}</p>
+            <button mat-flat-button color="primary" (click)="showPeliculaDetails(pelicula.id)" title="Details"><mat-icon
+                fontIcon="visibility"></mat-icon></button>
+        </mat-card-content>
+    </mat-card>
+</div>
